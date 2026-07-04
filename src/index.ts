@@ -19,6 +19,11 @@ registerTools(server);
 // Store active transports
 let transport: SSEServerTransport | null = null;
 
+// Root Route for Health Check
+app.get("/", (req, res) => {
+    res.send("DwellMint MCP Server is Live! Connect your AI client to the /sse endpoint.");
+});
+
 // Route for establishing an SSE connection
 app.get("/sse", async (req, res) => {
     transport = new SSEServerTransport("/messages", res);
